@@ -19,8 +19,9 @@ def my_hook(d):
 
 
 ydl_opts = {
-    'outtmpl': '/mp3Downloader/songs/%(title)s.mp3',
+    'outtmpl': '/songs/%(title)s.mp3',
     'format': 'bestaudio/best',
+    'noplaylist' : False,
     'postprocessors': [{
         'key': 'FFmpegExtractAudio',
         'preferredcodec': 'mp3',
@@ -32,7 +33,8 @@ ydl_opts = {
 
 try:
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        ydl.download(['https://www.youtube.com/playlist?list=PLQVoYf7hvaois5dt52N8gpF6U4ztFOyHU'])
+        inputURL = input("Please Input Your Youtube URL: ")
+        ydl.download([inputURL])
 except Exception:
     pass
 
